@@ -12,7 +12,7 @@ function addParticipant(event) {
     }
 
     const participantElt = `
-<li class="participant">${participantName}</li>
+<li class="participant">${participantName}<img src="poubelle.jpeg" alt="une poubelle" width="7px"></li>
 `;
 
     const participantListElt = document.getElementById("participantList");
@@ -33,11 +33,12 @@ addNameFormElt.addEventListener("submit", addParticipant);
 function generategroups(participants, numberGroups) {
 
     const sorted = participants
+    
         .map((participant) => ({ name: participant, sort: Math.random() }))
         .sort((a, b) => a.sort - b.sort)
         .map((participant) => participant.name)
 
-    console.log(sorted);
+    //console.log(sorted);
 
     const groupsArr = [];
     for (let i = 0; i < numberGroups; i++) {
@@ -53,9 +54,10 @@ function generategroups(participants, numberGroups) {
         }
     }
 
-    console.log(groupsArr);
+    //console.log(groupsArr);
 
     const groupListElt = document.getElementById("groupList");
+
 
     for (let groupIndex = 0; groupIndex < groupsArr.length; groupIndex++) {
 
@@ -79,7 +81,6 @@ function generategroups(participants, numberGroups) {
 
     }
 }
-
 
 const generateForm = document.getElementById('generateGroup');
 generateForm.addEventListener('submit', function(event) {
@@ -109,6 +110,13 @@ generateForm.addEventListener('submit', function(event) {
             return;
         }
 
-        console.log(participants);
+        //console.log(participants);
         generategroups(participants, numberGroups); 
 })
+
+participantList.addEventListener('click',event =>{
+    event.preventDefault();
+    event.target.parentNode.remove();
+    
+ });
+
